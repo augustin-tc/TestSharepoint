@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9B58E77-692B-4162-993F-C5B61C4C42C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestSharePoint.LeaveRequest</RootNamespace>
+    <AssemblyName>TestSharePoint.LeaveRequest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\LeavrequestWebPart\LeavrequestWebPart.cs" />
+    <Compile Include="Components\LeavrequestWebPart\LeavrequestWebPartUserControl.ascx.cs">
+      <DependentUpon>LeavrequestWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\LeavrequestWebPart\LeavrequestWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>LeavrequestWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Entitites\LeaveRequestEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Components\LeavrequestWebPart\LeavrequestWebPart.webpart" />
+    <None Include="Components\LeavrequestWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7f873c74-4388-4697-9e9e-734dc1a5f115}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{a5faa45d-7412-41a0-b4d1-58261062dea5}</FeatureId>
+    </None>
+    <None Include="Features\Feature2\Feature2.feature">
+      <FeatureId>{5857a189-3a88-4b62-b6af-3c6a5daeabd6}</FeatureId>
+    </None>
+    <None Include="Infrastructure\Lists\LeaveRequests\LeaveRequestsInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{507e6101-848c-4105-8322-076c313de060}</SharePointProjectItemId>
+    </None>
+    <None Include="Infrastructure\Lists\LeaveRequests\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a3a89c23-3da3-48de-a648-9d4b16c4d183}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="Package\Package.package">
+      <PackageId>{4f99a2b3-affb-465b-902e-831d1bc315ec}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Workflows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\LeavrequestWebPart\Elements.xml" />
+    <Content Include="Components\LeavrequestWebPart\LeavrequestWebPartUserControl.ascx" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Feature2\Feature2.Template.xml">
+      <DependentUpon>Feature2.feature</DependentUpon>
+    </Content>
+    <Content Include="Infrastructure\Lists\LeaveRequests\EditDlg.htm" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\Elements.xml" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\FileDlg.htm" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\LeaveRequestsInstance\Elements.xml" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\Repair.aspx" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\Schema.xml" />
+    <Content Include="Infrastructure\Lists\LeaveRequests\Upload.aspx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>
