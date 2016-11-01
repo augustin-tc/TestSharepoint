@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SharePoint;
+using TestSharePoint.LeaveRequest.Providers.Helpers;
 
 namespace TestSharePoint.LeaveRequest.Providers.Entitites
 {
@@ -11,55 +12,67 @@ namespace TestSharePoint.LeaveRequest.Providers.Entitites
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } 
-        public String Comment { get; set; }
+        public string Comment { get; set; }
         public string Status { get; set; }
+        public string FileName { get; set; }
+        public byte[] FileBytes { get; set; }
         
-        public LeaveRequestEntity()
+        public LeaveRequestEntity(SPListItem item =null)
         {
-
+            if (item != null)
+            {
+                StartDate = DateTime.Parse(item["StartDate"].ToString());
+                EndDate = DateTime.Parse(item["EndDate"].ToString());
+                if (item["Comment"] != null)
+                    Comment = item["Comment"].ToString();
+                Status = item["Status"].ToString();
+            }
         }
 
-        public LeaveRequestEntity Load(int id)
+        public void Load(int id)
         {
-            SPList list = GetList();
+            SPHelper spHelper = new SPHelper();
+            SPList list = spHelper.GetList();
 
             SPListItem item = list.Items.GetItemById(id);
-
-            return new LeaveRequestEntity()
-            {
-                StartDate = DateTime.Parse(item["StartDate"].ToString()),
-                EndDate = DateTime.Parse(item["EndDate"].ToString()),
-                Comment = item["Comment"].ToString(),
-                Status = item["Status"].ToString()
-            };
+            
+            StartDate = DateTime.Parse(item["StartDate"].ToString());
+            EndDate = DateTime.Parse(item["EndDate"].ToString());
+            if (item["Comment"] != null)
+                Comment = item["Comment"].ToString();
+            Status = item["Status"].ToString();
 
         }
 
         public void SaveItem(int id = 0)
         {
-            SPList list = GetList();
-            SPListItem item;
+            SPHelper spHelper = new SPHelper();
+            SPList list = spHelper.GetList();
+            SPFile fItem = null;
+            SPListItem lItem = null;
             if (id > 0)
-                item = list.Items.GetItemById(id);
+            {
+                lItem = list.GetItemById(id);
+            }
             else
-                item = list.Items.Add();
+            {
+                fItem = list.RootFolder.Files.Add(list.RootFolder.Url + "/" + FileName, FileBytes);
+                fItem.Update();
+                lItem = list.GetItemByUniqueId(fItem.UniqueId);
+            }
 
-            item["StartDate"] = StartDate;
-            item["EndDate"] = EndDate;
-            item["Comment"] = Comment;
-            item["Status"] = Status;
 
-            item.Update();
+            lItem["StartDate"] = StartDate;
+            lItem["EndDate"] = EndDate;
+            lItem["Comment"] = Comment;
+            lItem["Status"] = Status;
+
+            lItem.Update();
 
         }
 
       
-        SPList GetList()
-        {
-            SPWeb web = SPContext.Current.Web;
-            SPList list = web.Lists["LeaveRequests"];
-            return list;
-        }
+      
 
         
     }

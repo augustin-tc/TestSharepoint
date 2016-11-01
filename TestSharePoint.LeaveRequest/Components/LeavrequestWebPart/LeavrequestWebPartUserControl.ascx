@@ -11,14 +11,21 @@
 <div>
     
     <div>
-        <div>Start date : <input id="tbStartDate" runat="server" type="datetime" /> </div>
-        <div>End date: <input id="tbEndDate" runat="server" type="datetime" /></div>
-        <div><div>Comment: </div><textarea cols="50" rows="4" runat="server" id="TbComment"></textarea> </div>
+        <div>
+            <asp:FileUpload ID="FileUpload" ViewStateMode="Enabled" runat="server"/>
+            <div id="debugFile" runat="server"></div>
+        </div>
+        <div>Start date : <asp:Calendar ID="tbStartDate" runat="server"></asp:Calendar>     </div>      
+        <div>End date: <asp:Calendar ID="tbEndDate" runat="server"></asp:Calendar></div>         
+        <div><div>Comment: </div><div><textarea ID="TbComment" runat="server" Rows="6"></textarea> </div>
+            </div>
+            
     </div>
     <div>
          <input runat="server" id="btAccept" type="button" visible="false" value="Accept" />
          <input runat="server" id="btReject" type="button" visible="false" value="Reject" />
         <input runat="server" id="btSubmit" type="button" visible="false" value="Submit" />
+        <div runat="server" id="divResult"></div>
     </div>
 </div>
 </div>
