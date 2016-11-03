@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="aad7d615-6ae6-4495-92dd-94b37336c14d" solutionId="aad7d615-6ae6-4495-92dd-94b37336c14d" resetWebServer="false" sharePointProductVersion="15.0" name="TestSharePoint.SharePointAddId_JS" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="cbad15c9-a25a-4a5e-a415-7c249102095f" />
+  </features>
+</package>
