@@ -32,9 +32,10 @@
             <!-- The following content will be replaced with the user name when you run the app - see App.js -->
             initializing...
         </p>
-        <div id="content">
-
-        </div>
+        <div id="content">        
+        </div> 
+         <ul id="ulLists"></ul>
+        <div id="error"></div>
     </div>
 
 </asp:Content>

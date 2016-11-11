@@ -9,6 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharePoint.LeaveRequest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharePoint.SharePointAddId_JS", "TestSharePoint.SharePointAddId_JS\TestSharePoint.SharePointAddId_JS.csproj", "{FA574EB3-4BE3-4E90-8207-51BC528D5935}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharePoint.ProviderManagement", "TestSharePoint.ProviderManagement\TestSharePoint.ProviderManagement.csproj", "{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharePoint.ProviderManagementWeb", "TestSharePoint.ProviderManagementWeb\TestSharePoint.ProviderManagementWeb.csproj", "{C3E06005-7EF7-40D2-A48B-23C6085A84D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{353C85CC-3C9A-49DD-A9A0-D0E92F996CA1}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy certificate.ps1 = Deploy certificate.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +40,16 @@ Global
 		{FA574EB3-4BE3-4E90-8207-51BC528D5935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA574EB3-4BE3-4E90-8207-51BC528D5935}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA574EB3-4BE3-4E90-8207-51BC528D5935}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D323B847-AA38-4C9C-9577-F2B3FDF72A0D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C3E06005-7EF7-40D2-A48B-23C6085A84D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E06005-7EF7-40D2-A48B-23C6085A84D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E06005-7EF7-40D2-A48B-23C6085A84D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E06005-7EF7-40D2-A48B-23C6085A84D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,21 @@
+﻿@model TestSharePoint.ProviderManagementWeb.Models.Provider
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Provider details</h2>
+
+<div class="form-group">
+    <label>Name</label>
+    <label>@Model.Name</label>
+</div>
+<div class="form-group">
+    <label >Country</label>
+    <label>@Model.Country</label>
+</div>
+<div class="form-group">
+    <label>Address</label>
+    <label>@Model.Address</label>
+</div>
+

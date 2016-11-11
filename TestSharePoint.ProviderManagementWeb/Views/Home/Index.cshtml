@@ -1,0 +1,32 @@
+﻿@Scripts.Render("~/Scripts/Application/Index.js")
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="jumbotron">
+
+    <h2>Welcome @ViewBag.UserName on the provider management website.</h2>
+  
+</div>
+<div class="row">
+    <div id="ProviderTableContainer"></div>
+    <div>
+    @*<input id="buttonLoad" type="button" value="Load providers" />*@
+        <div id="buttonLoad">Load</div>
+    </div>
+    <script>
+        $("#buttonLoad").click(function () {
+            
+            try {
+                alert("loading data...");
+                $('#PersonTableContainer').jtable('load');
+            }
+            catch (err) {
+                alert(err.message);
+            }
+        }
+    );
+
+    </script>
+</div>

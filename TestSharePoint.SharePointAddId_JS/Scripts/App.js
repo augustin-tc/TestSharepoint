@@ -2,46 +2,69 @@
 
 ExecuteOrDelayUntilScriptLoaded(initializePage, "sp.js");
 
-function initializePage()
-{
+function initializePage() {
     var context = SP.ClientContext.get_current();
     var user = context.get_web().get_currentUser();
     var oWebsite = context.get_web();
+
+    var parentContext = null;
+    var parentWebSite = null;
     // This code runs when the DOM is ready and creates a context object which is needed to use the SharePoint object model
     $(document).ready(function () {
         getUserName();
-        //getSiteTitle();
-        retrieveWebSite('http://k2/sites/test')
+
+        retrieveParentSite('http://k2/sites/test');
     });
 
-    function getSiteTitle() {
-       
-        
-        context.load(web);
-        var SiteTitle = web.get_title();
+    function retrieveParentSite(url) {
+        var parentCtx = new SP.AppContextSite(context, 'http://K2/sites/test');
+        var parentWeb = parentCtx.get_web();
+        context.load(parentWeb);
+        //parentContext = new SP.ClientContext(url);
+        //parentWebSite = parentContext.get_web();
+        //parentContext.load(parentWebSite);
 
-        $('#content').text('Site title : ' + SiteTitle);
+        context.executeQueryAsync(function () {
+            //success
+            $('#content').text(parentWeb.get_title());
+            GetLists(parentWeb);
+
+        }, function (sender, args) {//failure
+            $('#error').text(args.get_message());
+        });
+    }
+    function GetLists(web) {
+        var lists = web.get_lists();
+        context.load(lists);
+
+        context.executeQueryAsync(function () {
+            //success
+            var listsEnumerator = lists.getEnumerator();
+            var list = document.getElementById("ulLists");
+
+            while (listsEnumerator.moveNext()) {
+                var oList = listsEnumerator.get_current();
+                var listInfo = "";
+                listInfo += 'Title: ' + oList.get_title() + ' Created: ' +
+                    oList.get_created().toString() + '\n';
+
+
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(listInfo));
+                list.appendChild(li);
+
+            }
+        },
+            function (sender, args) {//failure
+                $('#error').text(args.get_message());
+            });
+
+
+
     }
 
 
-    function retrieveWebSite(siteUrl) {
-        
-        
-        context.load(oWebsite);
 
-        context.executeQueryAsync(onQuerySucceeded , onQueryFailed);
-          
-    }
-
-    function onQuerySucceeded(sender, args) {
-        alert('Title: ' + oWebsite.get_title() +
-            ' Description: ' + oWebsite.get_description());
-    }
-
-    function onQueryFailed(sender, args) {
-        alert('Request failed. ' + args.get_message() +
-            '\n' + args.get_stackTrace());
-    }
 
 
     // This function prepares, loads, and then executes a SharePoint query to get the current users information
